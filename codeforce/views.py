@@ -206,7 +206,7 @@ def contest_problem_check(request, cid, pid):
 
 @login_required(login_url = "codeforce:index")
 def contest(request):
-    contests = Contest.objects.filter(contest_start_time__lt=datetime.datetime.now())
+    contests = Contest.objects.filter(contest_end_time__lt=datetime.datetime.now())
     for c in contests:
         print c.contest_description
     return render(request, 'codeforce/contest.html', 
@@ -590,13 +590,13 @@ def submit(request, ocid):
     else:
         cr = cr[0]
     total = oc.oc_contest.contest_participant_num
-    rank = ContestResults.objects.filter(cr_points__gt = oc.oc_points).count()
+    rank = ContestResults.objects.filter(cr_contest=oc.oc_contest.id, cr_points__gt = oc.oc_points).count()
     rank += 1
     if not cr.cr_is_submited:
         cr.cr_is_submited = True
         cr.cr_points = oc.oc_points
         cr.save()
-        user.user_points = user.user_points + total - rank + cr.cr_points
+        user.user_points += cr.cr_points
         user.save()
     return render(request, 'codeforce/submit_result.html',
         {

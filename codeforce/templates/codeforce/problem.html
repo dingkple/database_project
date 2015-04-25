@@ -2,22 +2,25 @@
 {% load staticfiles %}
 
 {% block link %}
-    <link href="{% static 'graphpin/picture.css' %}" rel="stylesheet">
+    <link href="{% static 'codeforce/picture.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
 
-
-<div id="problem">
-    <div class="problem_title">
+</br>
+</br>
+</br>
+<div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6"></div>
         <h2>{{ problem.problem_title}}</h2>
-        <div class="problem_title" class="info">
+        <div>
             <h3>Problem {{ problem.id }}</h3>
             </div>
         <div class="problem_content" >
             <p>{{ problem.description|truncatewords:"100" }}</p>
             </div>
-    </div>
+        </div>
 
     <div id = "pane">
         <form name="form" method="post" action="/codeforce/problem_check/{{ problem.id }}/">

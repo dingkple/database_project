@@ -3,7 +3,7 @@
 {% load staticfiles %}
 
 {% block link %}
-    <link href="{% static 'graphpin/starter-template.css' %}" rel="stylesheet">
+    <link href="{% static 'codeforce/starter-template.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -27,7 +27,7 @@
                 <tr>
                     <td>{{ forloop.counter }}</td>
                     <td>
-                        <a href="/codeforce/problem/{{ p.id }}" title="Published on {{p.publish_date}}">
+                        <a href="/codeforce/profile/{{ usr.id }}">
                           {{ usr.user_name }}
                         </a>
                     </td>
