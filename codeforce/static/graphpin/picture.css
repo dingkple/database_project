@@ -1,0 +1,161 @@
+
+body {
+  padding-top: 50px;
+}
+
+#logo {
+   position: absolute;
+   top: 0;
+   left: 11px;
+   width:250px;
+   height:45px;
+   margin-right: 20px;
+   background-image:url("pe_logo_default.png");
+}
+#logo div {
+   display:none;
+   position:relative;
+   font-family:Tahoma,sans-serif;
+   font-size:200%;
+   color:#6b4e3d;
+   font-weight:bold;
+   letter-spacing:-2px;
+}
+#logo span {
+   font-family:"Courier New",monospace;
+   color:#ccc;
+   position:absolute;
+   letter-spacing:0;
+   top:15px;
+}
+
+@media print {
+   .noprint {
+      display:none;
+   }
+   body {
+      max-width:800px;
+   }
+   #info_panel {
+      display:none;
+   }
+   .code_box {
+      display:block;
+   }
+}
+
+@media screen {
+   .print {
+      display:none;
+   }
+   #container {
+      padding-top: 60px;
+   }
+   #content {
+      margin: 0 auto;
+      max-width: 1000px;
+   }
+   .code_box {
+      display: none;
+   }
+   .forum_message {
+      width:820px;
+   }
+   .forum_info {
+      width: 180px;
+   }
+   #info_panel {
+      position:absolute;
+      right:10px;
+      top:55px;
+      text-align:right;
+      color:#999;
+      font: 80% Tahoma, Arial, sans-serif;
+   }
+}
+
+#container {
+   position: relative;
+   margin-top: 100px;
+   left: 50%;
+   right: 50%;
+}
+
+#problem {
+    float: left;
+    text-align: center;
+    margin-left: 100px;
+    margin-top: 50px;
+    width: 500px
+}
+
+.problem_content {
+   background-color:#fff;
+   /*font-size: 110%;*/
+   border-top:solid 1px #ddd;
+   border-bottom:solid 1px #aaa;
+   border-left:solid 1px #ddd;
+   border-right:solid 1px #aaa;
+   padding:10px;
+   width: 1000
+}
+
+.problem_title {
+   text-align: center;
+   width:300px;
+}
+
+#pane {
+    margin-top: 20px;
+}
+
+#result {
+   margin-top: 60px;
+   margin-left: 100px;
+   margin-left: 100px;
+   text-indent: center;
+   border-top:solid 1px #ddd;
+   border-bottom:solid 1px #aaa;
+   border-left:solid 1px #ddd;
+   border-right:solid 1px #aaa;
+   padding:10px;
+
+}
+
+p.result_content {
+   text-align: center;
+   /*width:300px;*/
+}
+
+#goback {
+   position: relative;
+   margin-top: 50px;
+   left: 50%;
+   right: 50%;
+}
+
+#cur_points {
+   position: relative;
+   margin-top: 150px;
+   margin-right: 300px;
+   text-align: center;
+   left: 8%;
+   font: 100% Tahoma, Arial, sans-serif;
+}
+
+#time_points {
+   position: relative;
+   margin-top: 300px;
+   margin-left: 300px;
+/*   left: 20%;
+   right: 20%;*/
+}
+
+#submit_simulate {
+   position: relative;
+   margin-top: 20px;
+   margin-right: 300px;
+   text-align: center;
+   left: 8%;
+   font: 150% Tahoma, Arial, sans-serif;
+}

@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block link %}
+    <link href="{% static 'graphpin/starter-template.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'js/jquery.countdown.css' %}">
+    <link href="{% static 'graphpin/dist/css/bootstrap.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="row">
+<div class="col-sm-2"> </div>
+<div class="col-sm-7"> 
+<div class="well"><h3 class="text-center">Ongoing Contest</h3></div>
+</div>
+</div>
+
+<div class="row">
+    <div class="col-sm-7"> 
+        <table class="table table-striped">
+          <thead>
+              <tr>
+                  <th><strong>CONTEST NAME</th>
+                  <th>START TIME</th>
+                  <th><strong>DURATION</th>
+                  <th><strong>STANDING</th>
+                  <th ><strong>Joined</th>
+              </tr>
+          </thead>
+        <tbody>
+        {% for c in ongoing_contest %}
+            <tr>
+                <td> 
+                    <a href="/codeforce/real_contest/{{ c.id }}" title="Published on {{c.publish_date}}">
+                        {{c.contest_description}}
+                    </a>
+                </td>
+                <td>{{c.contest_start_time}}</td>
+                <td>{{c.contest_duration}}</td>
+                <td>
+                  <a href="/codeforce/contest_rating/{{ c.id }}" title="Published on {{c.publish_date}}">
+                        Final Rating
+                    </a>
+                </td>
+                <td>{{ c.contest_participant_num }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    </div>
+
+    <div class="col-sm-2">
+      <table class="table table-striped"> 
+      <thead>
+        <tr> 
+          <th><strong>REGISTRATION</strong></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for cr in og_crs %}
+        <tr>
+        {% if cr != False %}
+          <td>
+              <a href="/codeforce/register/{{ cr }}">
+                  Register
+              </a>
+          </td>
+        {% else %}
+          <td >
+                  Registered
+          </td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+  </div>
+
+    <div class="col-sm-2"> 
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th ><strong>Left Time</strong></th>
+          </tr>
+          </thead>
+          <tbody>
+          {% for t in ongoing_left %}
+          <tr>
+            <td>MINUTES: {{ t }}</td>
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table> 
+    </div>
+</div>
+
+<div class="row">
+<div class="col-sm-2"> </div>
+<div class="col-sm-7"> 
+<div class="well"><h3 class="text-center">Coming Contest</h3></div>
+</div>
+</div>
+
+<div class="row">
+    <div class="col-sm-7"> 
+        <table class="table table-striped">
+          <thead>
+              <tr>
+                  <th><strong>CONTEST NAME</th>
+                  <th>START TIME</th>
+                  <th><strong>DURATION</th>
+                  <th><strong>STANDING</th>
+                  <th ><strong>Joined</th>
+              </tr>
+          </thead>
+        <tbody>
+        {% for c in coming_contests %}
+            <tr>
+                <td>{{c.contest_description}}</td>
+                <td>{{c.contest_start_time}}</td>
+                <td>{{c.contest_duration}}</td>
+                <td>
+                  <a href="/codeforce/contest_rating/{{ c.id }}" title="Published on {{c.publish_date}}">
+                        Final Rating
+                    </a>
+                </td>
+                <td>{{c.contest_participant_num}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    </div>
+
+    <div class="col-sm-2">
+      <table class="table table-striped"> 
+      <thead>
+        <tr> 
+          <th><strong>REGISTRATION</strong></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for cr in coming_crs %}
+        <tr>
+        {% if cr != False %}
+          <td>
+              <a href="/codeforce/register/{{ cr }}">
+                  Register
+              </a>
+          </td>
+        {% else %}
+          <td > Registered </td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+  </div>
+
+    <div class="col-sm-2"> 
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th ><strong>Left Time</strong></th>
+          </tr>
+          </thead>
+          <tbody>
+          {% for t in coming_left %}
+          <tr>
+            <td>MINUTES: {{ t }}</td>
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table> 
+    </div>
+</div>
+
+
+{% endblock %}
+
+

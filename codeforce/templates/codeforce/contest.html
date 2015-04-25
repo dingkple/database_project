@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block link %}
+    <link href="{% static 'graphpin/starter-template.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+</br>
+</br>
+</br>
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+        <table class="table table-striped">
+        <hhead>
+            <tr>
+                <th class="solved_by_column"><strong>Contest ID</th>
+                <th class="title_column">Description / Title</th>
+                <th class="solved_by_column"><strong>Virtual Contest</th>
+                <th class="solved_by_column"><strong>Final Rating</th>
+                <th class="solved_by_column"><strong>Participant</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for c in contests %}
+            <tr>
+                <td><div style="text-align:center;">{{c.id}}</div></td>
+                    <td>
+                        <a href="/codeforce/contest_detail/{{ c.id }}" title="Published on {{c.publish_date}}">
+                            {{c.contest_description}}
+                        </a>
+                    </td>
+                <td>
+                        <a href="/codeforce/contest_simulate/{{ c.id }}" title="Published on {{c.publish_date}}">
+                            Enter
+                        </a>
+                </td>
+                <td>
+                    <a href="/codeforce/contest_rating/{{ c.id }}" title="Published on {{c.publish_date}}">
+                        Final Rating
+                    </a>
+                    </td>
+                <td><div style="text-align:center;">{{c.contest_participant_num}}</div></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+{% endblock %}
+
+

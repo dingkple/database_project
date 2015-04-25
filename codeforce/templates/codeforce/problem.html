@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block link %}
+    <link href="{% static 'graphpin/picture.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+
+<div id="problem">
+    <div class="problem_title">
+        <h2>{{ problem.problem_title}}</h2>
+        <div class="problem_title" class="info">
+            <h3>Problem {{ problem.id }}</h3>
+            </div>
+        <div class="problem_content" >
+            <p>{{ problem.description|truncatewords:"100" }}</p>
+            </div>
+    </div>
+
+    <div id = "pane">
+        <form name="form" method="post" action="/codeforce/problem_check/{{ problem.id }}/">
+            {% csrf_token %}
+            <table width="400" cellpadding="10" align="center">
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td><div style="text-align:center;">Answer:</div></td>
+                                <td style="text-align:left;">
+                                    <div style="text-align:center;"><input size="20" type="text" name="guess_36" id="guess" maxlength="30" />
+                                </td>
+                            </tr>
+                            <tr><td colspan="2"> </td></tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td style="text-align:center;">
+                                    <input type="submit" class="btn btn-lg btn-primary" value="Check" />
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+
+
+
+{% endblock %}
+
+
+
+

@@ -1,0 +1,195 @@
+body {
+  padding-top: 50px;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+#upload {
+    width: 200px;
+    float: left;
+    margin-top: 20px;
+    display: inline-block;
+}
+
+#addpin {
+    width: 200px;
+    margin-top: 20px;
+    margin-left: 20px;
+    display: inline-block;
+}
+
+#submenu {
+    margin-top: 40px;
+}
+
+#pane {
+    margin-top: 20px;
+}
+
+#pane_left {
+    float: left;
+    width: 200px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+#pane_right {
+    float: left;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+#pane_time {
+    float: left;
+    margin-left: 20px;
+    margin-top: 10px
+}
+
+
+#pane_result {
+    float: left;
+    margin-left: 20px;
+    margin-left: 10px;
+}
+
+#pane_right .sortby {
+   color:#000;
+   font-weight:bold;
+}
+#pane_right .age_minutes {
+   color:#d52b00;
+}
+#pane_right .age_hours {
+   color:#ff7d5e;
+}
+#pane_right .age_days {
+   color:#676c9c;
+}
+#pane_right .age_weeks {
+   color:#9296b8;
+}
+#pane_right #problems_table {
+   max-width:800px;
+}
+#pane_right #problems_table th.id_column {
+   width:40px;
+   text-align:center;
+}
+#pane_right #problems_table td.id_column {
+   height:30px;
+   text-align:center;
+   font-weight:bold;
+}
+#pane_right #problems_table th.title_column {
+   width:400px;
+}
+#pane_right #problems_table th.solved_by_column {
+   width:80px;
+}
+#pane_right #problems_table th.difficulty_column {
+   width:70px;
+}
+#pane_right #problems_table td.difficulty_column {
+   padding:5px;
+}
+#pane_right #problems_table th.final_column {
+   border:none;
+   background:none;
+   width:250px;
+}
+#pane_right #problems_table a {
+   text-decoration:none;
+}
+
+.pics {
+    width: 200px;
+    display: inline-block;
+    margin-left: 20px;
+    margin-top: 15px;
+}
+
+.pic_block {
+    margin: 30px auto 10px;
+    width: 900px;
+}
+
+.grid {
+  border-collapse: collapse;
+}
+.grid tr {
+   background-color:#fff;
+}
+.grid th {
+   color: #666;
+   background-color: #eee;
+   text-align: center;
+   font-weight: bold;
+}
+.grid td, .grid th {
+   background-color: inherit;
+   padding: 2px;
+   border: 1px solid #bbb;
+}
+
+#current_contest {
+    margin-top: 60px;
+}
+
+th.contest_name{
+    width: 150px;
+    text-align: center;
+}
+
+th.start_time {
+    width: 200px;
+    text-align: center;
+}
+
+th.duration {
+    width: 80px;
+    text-align: center;
+}
+
+th.rating {
+    width: 100px;
+    text-align: center;
+}
+
+th.register {
+    width: 100px;
+    text-align: center;
+}
+
+td.contest_name{
+    width: 150px;
+    text-align: center;
+}
+
+td.time_format {
+    width: 200px;
+    text-align: center;
+}
+
+td.duration {
+    width: 80px;
+    text-align: center;
+}
+
+td.rating {
+    width: 100px;
+    text-align: center;
+}
+
+td.register {
+    width: 100px;
+    text-align: center;
+}
+
+#table_description {
+    margin-top: 100px;
+    width: 1000px;
+    text-align: center;
+}
+

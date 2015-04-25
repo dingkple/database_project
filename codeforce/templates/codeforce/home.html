@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block link %}
+    <link href="{% static 'graphpin/starter-template.css' %}" rel="stylesheet">
+{% endblock %}
+
+
+
+{% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!--       <div id="upload">
+      <form action="/codeforce/upload/">
+        <button class="btn btn-lg btn-success btn-block">Upload a pin</button>
+      </form>
+      </div>
+
+      <div id="addpin">
+      <form action="/codeforce/addurl/">
+        <button class="btn btn-lg btn-primary btn-block">Add pin from URL</button>
+      </form>
+      </div> -->
+
+    <ul class="nav nav-tabs" id="submenu">
+        <li {% if not is_medium and not is_hard %} class="active" {% endif %}>
+            <a href="/codeforce/home/">Easy</a>
+        </li>
+        <li {% if is_medium %} class="active" {% endif %}>
+            <a href="/codeforce/home/medium/">Medium</a>
+        </li>
+        <li {% if is_hard %} class="active" {% endif %}>
+            <a href="/codeforce/home/hard/">Hard</a>
+        </li>
+    </ul>
+</br></br>
+<div class="row">
+
+    <div class="col-sm-2">
+            <!-- <div id="pane_left"> -->
+                <form action="/codeforce/gotoproblem/" method="post">
+                    {% csrf_token %}
+                    <input type="text" class="form-control" name="pid" placeholder="Problem ID"/>
+                    <div style="width 200px; margin-top: 15px">
+                    <button class="btn btn-md btn-default">
+                        GO TO PROBLEM
+                    </button>
+                    </div>
+                </form><br/>
+            </div>
+            <!-- <div id="pane_right"> -->
+    <div class="col-sm-7">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="id_column"><strong><span class="sortby">ID</span></strong></th>
+                            <th class="title_column">Description / Title</th>
+                            <th class="solved_by_column"><strong>Solved By</th>
+                            <th class="solved_by_column"><strong>Total Trial</th>
+                            
+                        </tr>
+                    <thead>
+                    <tbody>
+                        {% for p in problems %}
+                            <tr>
+                                <td class="id_column">{{ p.id }}</td>
+                                <td><a href="/codeforce/problem/{{ p.id }}" title="Published on {{p.publish_date}}">{{p.problem_title}}</a></td>
+                                <td><div style="text-align:center;">{{p.solved_num}}</div></td>
+                                <td><div style="text-align:center;">{{ p.trial_num }}</div></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+            </div>
+</div>
+</div>
+
+
+{% endblock %}
+
+

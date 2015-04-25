@@ -1,0 +1,137 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
+from django.db import models, migrations
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ('codeforce', '0006_cfusers'),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='ContestDetail',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('contest_creater', models.CharField(max_length=100)),
+                ('contest_duration', models.IntegerField()),
+                ('contest_start_time', models.TimeField()),
+                ('contest_end_time', models.TimeField()),
+                ('contest_publish_date', models.DateField()),
+                ('contest_description', models.CharField(max_length=500)),
+                ('contest_participant_num', models.IntegerField()),
+            ],
+        ),
+        migrations.CreateModel(
+            name='ContestParticipantInfo',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('cpi_is_right', models.BooleanField()),
+                ('cpi_trial_time', models.TimeField()),
+                ('cpi_trial_date', models.DateField()),
+                ('cpi_trial_answer', models.IntegerField()),
+            ],
+        ),
+        migrations.DeleteModel(
+            name='ContestInfo',
+        ),
+        migrations.DeleteModel(
+            name='ContestProblemList',
+        ),
+        migrations.RemoveField(
+            model_name='contest',
+            name='contest_creater',
+        ),
+        migrations.RemoveField(
+            model_name='contest',
+            name='contest_description',
+        ),
+        migrations.RemoveField(
+            model_name='contest',
+            name='contest_duration',
+        ),
+        migrations.RemoveField(
+            model_name='contest',
+            name='contest_end_time',
+        ),
+        migrations.RemoveField(
+            model_name='contest',
+            name='contest_participant_num',
+        ),
+        migrations.RemoveField(
+            model_name='contest',
+            name='contest_problem_list_id',
+        ),
+        migrations.RemoveField(
+            model_name='contest',
+            name='contest_publish_date',
+        ),
+        migrations.RemoveField(
+            model_name='contest',
+            name='contest_start_time',
+        ),
+        migrations.RemoveField(
+            model_name='contestresults',
+            name='cr_cid',
+        ),
+        migrations.RemoveField(
+            model_name='contestresults',
+            name='cr_uid',
+        ),
+        migrations.RemoveField(
+            model_name='problem',
+            name='contest_id',
+        ),
+        migrations.AddField(
+            model_name='contest',
+            name='contest_problem',
+            field=models.ForeignKey(default=1, to='codeforce.Problem'),
+            preserve_default=False,
+        ),
+        migrations.AddField(
+            model_name='contest',
+            name='cp_success_num',
+            field=models.IntegerField(default=0),
+            preserve_default=False,
+        ),
+        migrations.AddField(
+            model_name='contest',
+            name='cp_trial_num',
+            field=models.IntegerField(default=0),
+            preserve_default=False,
+        ),
+        migrations.AddField(
+            model_name='contestresults',
+            name='cr_contest',
+            field=models.ForeignKey(default=1, to='codeforce.Contest'),
+            preserve_default=False,
+        ),
+        migrations.AddField(
+            model_name='contestresults',
+            name='cr_user',
+            field=models.ForeignKey(default=1, to='codeforce.CFUsers'),
+            preserve_default=False,
+        ),
+        migrations.AddField(
+            model_name='contestparticipantinfo',
+            name='cpi_contest',
+            field=models.ForeignKey(to='codeforce.Contest'),
+        ),
+        migrations.AddField(
+            model_name='contestparticipantinfo',
+            name='cpi_problem',
+            field=models.ForeignKey(to='codeforce.Problem'),
+        ),
+        migrations.AddField(
+            model_name='contestparticipantinfo',
+            name='cpi_user',
+            field=models.ForeignKey(to='codeforce.CFUsers'),
+        ),
+        migrations.AddField(
+            model_name='contestdetail',
+            name='contest',
+            field=models.ForeignKey(to='codeforce.Contest'),
+        ),
+    ]

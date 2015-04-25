@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block link %}
+    <link href="{% static 'graphpin/starter-template.css' %}" rel="stylesheet">
+    <link href="{% static 'graphpin/picture.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'js/jquery.countdown.css' %}">
+    <link href="{% static 'graphpin/dist/css/bootstrap.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<style type="text/css">
+  #defaultCountdown { width: 240px; height: 45px; }
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="{% static 'js/jquery.plugin.js' %}"></script>
+<script src="{% static 'js/jquery.countdown.js' %}"></script>
+<script>
+    $(function () {
+      // var austDay = new Date();
+      // austDay = new Date(austDay.getFullYear() + 1, 1 - 1, 26);
+      var austDay = new Date("{{ ongoing_contest.oc_end_time.isoformat }}");
+      // $('#defaultCountdown').countdown({until: austDay});
+      $('#defaultCountdown').countdown({until: $.countdown.UTCDate(-8, austDay), format: 'HMS'});
+      // $('#defaultCountdown').countdown({until: });
+      $('#year').text(austDay.getFullYear());
+
+    });
+</script>
+<!--       <div id="upload">
+      <form action="/codeforce/upload/">
+        <button class="btn btn-lg btn-success btn-block">Upload a pin</button>
+      </form>
+      </div>
+
+      <div id="addpin">
+      <form action="/codeforce/addurl/">
+        <button class="btn btn-lg btn-primary btn-block">Add pin from URL</button>
+      </form>
+      </div> -->
+
+    <ul class="nav nav-tabs" id="submenu">
+        {% for i in range %}
+          <li> <a href="/codeforce/ongoing/{{ cid }}/{{ ongoing_contest.id }}/{{ i }}">Problem {{ i|add:'1' }}</a>
+        {% endfor %}
+<!--         <li>
+            <a href="/codeforce/home/">Problem {{ cpid }}</a>
+        </li>
+        <li>
+            <a href="/codeforce/home/medium/">Problem {{ cpid }}</a>
+        </li>
+        <li>
+            <a href="/codeforce/home/hard/">Problem {{ cpid }}</a>
+        </li> -->
+    </ul>
+<!-- 
+    <div id="pane_left">
+          <button type="button" class="btn btn-lg btn-default">Default</button>
+    </div> -->
+
+    <div id="problem">
+
+        {% for p in problems %}
+            {% if p.id == cpid %}
+            <div id="problem_title">
+              <h2>{{ p.problem_title }}</h2>
+              <div id="problem_title" class="info">
+                <h3>Problem {{ p.id }}</h3>
+                </div>
+            <div class="problem_content">
+                <p>{{ p.description|truncatewords:"100" }}</p>
+            </div>
+      </div>
+      <div id="pane">
+        <div style="text-align:center;" class="noprint">
+          <form name="form" method="post" action="/codeforce/problem_check/{{ongoing_contest.oc_contest.id}}/{{ ongoing_contest.id }}/{{ cpid }}/">
+              {% csrf_token %}
+              <table width="400" cellpadding="10" align="center">
+                  <tr>
+                      <td>
+                          <table>
+                          <tr><td colspan="2"> </td></tr>
+                              <tr>
+                                  <td>&nbsp;</td>
+                                  <td><div style="text-align:center;">Answer:</div></td>
+                                  <td style="text-align:left;">
+                                      <div style="text-align:center;"><input size="20" type="text" name="guess_36" id="guess" maxlength="30" />
+                                  </td>
+                              </tr>
+                              <tr><td colspan="2"> </td></tr>
+                              <tr>
+                                  <td>&nbsp;</td>
+                                  <td>&nbsp;</td>
+                                  <td style="text-align:center;">
+                                    <input type="submit" class="btn btn-lg btn-primary" value="Check" />
+                                  </td>
+                              </tr>
+                          </table>
+                      </td>
+                  </tr>
+              </table>
+          </form>
+        </div>
+        {% endif %}
+    {% endfor %}
+
+</div>
+
+    </div>
+    <div id="defaultCountdown"></div>
+    {% if not is_finished or is_simulating %}    
+      <div id="cur_points">
+          <p> CURRENT POINTS (total {{ contest.contest_total_points }}) </p>
+          <p> {{ ongoing_contest.oc_points }} </p>
+      </div>
+      <div id="submit_simulate">
+          <button type="button" 
+            class="btn btn-sm btn-primary" 
+            onclick="javascript:window.location.href='/codeforce/submit/{{ongoing_contest.id}}'">
+              SUBMIT
+          </button>
+      </div>
+    {% endif %}
+
+
+{% endblock %}
+
+

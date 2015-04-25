@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block link %}
+    <link href="{% static 'graphpin/picture.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div id="result">
+
+    {% if successful %}
+        <p class = "result_content"> Your answer to problem {{ problem.id }} is right</p>
+        <p class = "result_content"> Congratulations </p>
+    {% else %}
+        <p class = "result_content"> Your answer to problem {{ problem.id }} is wrong</p>
+        <p class = "result_content"> Sorry, keep trying~ </p>
+    {% endif %}
+</div>
+
+<div id="goback"> 
+    {% if ongoing_contest %}
+    <button type="button" 
+            class="btn btn-sm btn-primary" 
+            onclick="javascript:window.location.href='/codeforce/ongoing/{{ongoing_contest.oc_contest.id}}/{{ongoing_contest.id}}/0'">
+        CONTEST
+    </button>
+
+    {% elif contest %}
+    <button type="button" 
+        class="btn btn-sm btn-primary" 
+        onclick="javascript:window.location.href='/codeforce/contest_detail/{{contest.id}}'">
+    HOME
+    </button>
+
+    {% else %}
+    <button type="button" 
+            class="btn btn-sm btn-primary" 
+            onclick="javascript:window.location.href='/codeforce/home'">
+        HOME
+    </button>
+    {% endif %}
+</div>
+
+{% endblock %}
+
+
+
+

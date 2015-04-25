@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block link %}
+    <link href="{% static 'graphpin/signin.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+</br>
+</br>
+</br>
+<div class="row">
+        <div class="col-sm-2">
+            <!--left col-->
+            <ul class="list-group">
+                <li class="list-group-item text-muted" contenteditable="false">Profile</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">User Name</strong></span>{{the_user.username}}</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">E-Mail</strong></span> {{cfu.user_email}}</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Gender</strong></span> {{cfu.user_gender}}</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Location</strong></span>{{cfu.user_location}}</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong class="">Points</strong></span> {{cfu.user_points}}
+                      </li>
+            </ul>
+            <a href="/codeforce/profile_edit/" style="text-decoration: none"><button class="btn btn-lg btn-danger btn-block">Edit</button></a>
+        </div>
+
+        <div class="col-sm-10">
+            <h2> Recent Contests </h2>
+            <div class="row">
+            <div class="col-sm-10">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Contest Name</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Final Standing </th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for c in crs %}
+                    <tr>
+                        <td>{{ c.cr_contest.id }}</td>
+                        <td>{{ c.cr_contest.contest_name }}</td>
+                        <td>{{ c.cr_contest.contest_start_time }}</td>
+                        <td>{{ c.cr_contest.contest_end_time }}</td>
+                        <td><a href="/codeforce/contest_rating/{{ c.cr_contest.id }}"> Final Standing</a></td>
+                        <td>{{ c.cr_points }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+<!--          <div class="col-sm-1">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>My Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for cr in crs %}
+                    <tr>
+                        <td>{{ cr.cr_points }}</td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+        </div> -->
+<!--         <div class="col-sm-1">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>My Standing</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for s in standings %}
+                    <tr>
+                        <td>{{ s }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div> -->
+        </div>
+</div>
+
+
+{% endblock %}
+
+

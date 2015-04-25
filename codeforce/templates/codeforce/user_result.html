@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block link %}
+    <link href="{% static 'graphpin/starter-template.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+</br>
+</br>
+</br>
+    <div class="row">
+      <div class="col-sm-1"></div>
+        <div class="col-sm-8">
+            <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>User Name</th>
+                <th>e-mail</th>
+                <th>Points</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for u in result %}
+                <tr>
+                    <td>
+                        <a href="/codeforce/profile/{{ u.id }}">
+                          {{ u.user_name }}
+                        </a>
+                    </td>
+                    <td >{{ usr.user_email }}</td>
+                    <td>{{ usr.user_points }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            </table>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+

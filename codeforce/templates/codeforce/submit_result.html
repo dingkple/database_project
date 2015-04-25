@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block link %}
+    <link href="{% static 'graphpin/picture.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div id="result">
+
+    {% if is_submit_successful %}
+        <p class = "result_content"> Your submission of contest {{ ongoing_contest.oc_contest.id }} is successful</p>
+        <p class = "result_content"> Your rating is {{ rating }} / {{ total }}
+        <p class = "result_content"> Congratulations </p>
+    {% else %}
+        <p class = "result_content"> This is not the time for contest, sorry</p>
+    {% endif %}
+
+</div>
+
+<div id="goback"> 
+    <button type="button" 
+            class="btn btn-sm btn-primary" 
+            onclick="javascript:window.location.href='/codeforce/home'">
+        HOME
+    </button>
+</div>
+
+{% endblock %}
+
+
+
+

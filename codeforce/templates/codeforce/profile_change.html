@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block link %}
+    <link href="{% static 'graphpin/signin.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+      <br/><br/><br/><br/>
+      {% if is_chg_suc == None or not is_chg_suc %}
+        {% if is_chg_suc == False %}
+            <div class="well"><h3 class="text-center">Change Failed</h3></div>
+        {% endif %}
+      <form class="form-signin" role="form" action="/codeforce/profile_change/{{the_user.id}}/" method="post">
+        {% csrf_token %}
+        <label>Username</label><h2>{{ the_user.username }}</h2>
+        <br/>
+        <label>Email</label><br/>
+        <input type="text" value="{{ email }}" name="email" class="form-control" placeholder="{{cfu.user_email}}" required><br/>
+        <label>Gender</label><br/>
+        <label><input type="radio" name="gender" value="M" {% if gender == "M" %}checked{% endif %}>  Male </label>
+        <label><input type="radio" name="gender" value="F" {% if gender == "F" %}checked{% endif %}>  Female </label><br/><br/>
+        <label>Location</label><br/>
+        <input type="text" name="location" class="form-control" value="{{ location }}" placeholder="{{cfu.user_location}}" required><br/><br/><br/>
+
+        <button class="btn btn-lg btn-success btn-block" type="submit">Save</button>
+      </form>
+          <div style="width: 300px; margin: 0px auto 20px;">
+        <a href="/codeforce/home/" style="text-decoration: none"><button class="btn btn-lg btn-danger btn-block">HOME</button></a>
+    </div>
+      {% elif is_chg_suc %}
+        <div class="well"><h3 class="text-center">Changed Successfully</h3></div>
+            <div style="width: 300px; margin: 0px auto 20px;">
+        <a href="/codeforce/home/" style="text-decoration: none"><button class="btn btn-lg btn-danger btn-block">HOME</button></a>
+    </div>
+      {% endif %}
+
+{% endblock %}
+
+

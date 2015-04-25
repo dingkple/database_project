@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block link %}
+    <link href="{% static 'graphpin/starter-template.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+</br>
+</br>
+</br>
+    <div class="row">
+      <div class="col-sm-1"></div>
+        <div class="col-sm-8">
+            <table class="table table-striped">
+            <thead>
+            <tr>
+                <th><strong>Rating</th>
+                <th>User Name</th>
+                <th><strong>Contest Num</span></strong></th>
+                <th><strong>Points</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for usr in users %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>
+                        <a href="/codeforce/problem/{{ p.id }}" title="Published on {{p.publish_date}}">
+                          {{ usr.user_name }}
+                        </a>
+                    </td>
+                    <td >{{ usr.user_contest_num }}</td>
+                    <td>{{ usr.user_points }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            </table>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
